@@ -1,0 +1,147 @@
+Dataset used:- CIFAR-10 
+Increasingly a more robust architecture has been the Transform Perception Architecture 
+(ViT) which utilizes transformer based models towards computer based tasks that were 
+primarily for natural language. Opposite of the traditional CNNs, the models of ViT are built 
+differently since image patches are regarded as sequences of tokens. This helps in the 
+effective representation of long range correlations in the image. Our focus in this paper is to 
+extend the application of ViT to CIFAR-10, the most frequently used image classification 
+benchmarking data set. Open source datasets like the CIFAR-10 consists of 60000 32×34 
+color image in 10 classes making it appropriate for this level of processing. 
+In this approach, the given input image is divided into patches, the patches are flattened and 
+this tokenization concept is followed with every patch going inside a transformer encoder. At 
+the end, the images or to be specific, these tokens are passed through many layers of 
+transformers for encoders with self-attention mechanism to comprehend the entire image 
+followed, then MLP, classification is done. The clean ViT model is assessed against dual setup 
+CNN based models on the given dataset. 
+While it has shown that these models require a lot of patience with vision transformers, 
+experimental results have shown that vision transformers without any augmentation or 
+complex training techniques can still perform reasonably well against comparatively trained 
+models on the nad cifar-10. 
+Objective:- 
+The main goal of this project is to investigate the applicability and performance of the Vision 
+Transformer (ViT) architectures for image classification tasks using the CIFAR-10 dataset. 
+More specifically, goals are: 
+Implementation of Vision Transformer (ViT): 
+To design and construct a Vision Transformer model for the purposes of Image classification. 
+That is to say becoming end to end computer vision with the transformer architecture 
+adapted from the natural language processing domain. This entails decomposing the CIFAR
+10 images into smaller patches and using these as input tokens in the transformer model. 
+Introduction:- 
+Deep learning is a crucial development to computer vision where the c, from the 
+understanding of complex spatial relations, architecture are taken over by ‘Convolutional 
+Neural Networks’ Security including image classification, segmentation and Identification. 
+The biggest strength of CNNs has been their feature of using convolutional layers to model 
+and extract local features in a layered manner. However, CNNs have drawbacks in the long
+range dependencies that they are able to capture within images especially, tasks that need 
+knowledge of the image structure as a whole. 
+More recently, various computer vision targets proved themselves for the extensions of the 
+complex multipliers including Vision Transformers ViTs of any sorts and kinds of various 
+structural units and mechanisms that isolate and delineate various parts of the image and 
+act within all of them and even beyond without obstructions of distances or any near 
+proximity limits. Affect administration system without impacting the complete 
+administration procedure to this end, it has been noted that instead of introducing 
+Convolutional networks, ViT first dissects the images into patches of predetermined 
+dimensions and considers them as a sequence, much like words for nlp tasks. 
+This project implements the Vision Transformers architecture onto the datasets of CIFAR-10, 
+consisting of 60,000 32x32 color images. CIFAR-10 is one of the benchmark dataset for 
+image classification. The data is packed in a small but demanding image classification 
+benchmarking due to it’s became up low resolution and small image size 
+Methodology:- 
+The methodology for applying the Vision Transformer (ViT) to the CIFAR-10 dataset consists 
+of several steps, including data preprocessing, model architecture, training, and evaluation. 
+Below is a detailed breakdown of the steps involved: 
+1. Data Preprocessing: 
+Dataset: 
+The CIFAR-10 dataset consists of 60,000 32x32 color images split into 50,000 training images 
+and 10,000 test images, covering 10 distinct classes (airplane, automobile, bird, cat, deer, 
+dog, frog, horse, ship, and truck). 
+Normalization: 
+The pixel values of the images are normalized to a range of [0, 1] or [-1, 1], depending on the 
+chosen transformer architecture and optimization strategy. Typically, each channel (R, G, B) 
+is normalized using the dataset’s mean and standard deviation values. 
+Patch Embedding: 
+Since the Vision Transformer processes images as sequences of patches, each 32x32 image is 
+split into smaller non-overlapping patches (e.g., 4x4 or 8x8 pixels). These patches are 
+f
+ lattened and transformed into 1D vectors. For example, for a 4x4 patch, the dimensionality 
+is  
+4 
+× 
+4 
+× 
+3 
+= 
+48 
+4×4×3=48 for RGB channels. 
+Positional Encoding: 
+To provide the model with information about the relative position of patches, a positional 
+encoding is added to each patch embedding. This encoding allows the transformer to retain 
+spatial information, which is essential for image understanding. 
+2. Vision Transformer (ViT) Architecture: 
+Patch Embedding Layer: 
+The flattened patches from the CIFAR-10 images are linearly projected into a higher
+dimensional space (e.g., 768 dimensions). This layer outputs a sequence of embeddings 
+representing each image patch. 
+Transformer Encoder Layers: 
+The core of the Vision Transformer consists of multiple transformer encoder layers. Each 
+layer contains: 
+Multi-Head Self-Attention: This mechanism enables the model to focus on different parts of 
+the image simultaneously, capturing relationships between distant patches. 
+Feed-Forward Neural Networks (FFNN): Following the self-attention layers, a fully 
+connected feed-forward network is applied to the output. This helps with learning complex 
+representations. 
+Layer Normalization and Residual Connections: Normalization layers and residual 
+connections are used to stabilize training and improve convergence. 
+Class Token: 
+A learnable "class token" is prepended to the patch sequence. This token aggregates 
+information from all patches through the transformer layers and is used as the final 
+representation for image classification. 
+Positional Encoding: 
+To maintain the spatial structure of the image patches, learnable or fixed positional 
+encodings are added to the patch embeddings at each transformer layer. 
+MLP Head: 
+After passing through the transformer layers, the final representation (usually the class 
+token) is passed to a Multi-Layer Perceptron (MLP) head with a softmax activation function 
+for classification into 10 classes. 
+3. Training Strategy: 
+Loss Function: 
+The model is trained using the cross-entropy loss function, which is standard for multi-class 
+classification problems. 
+Optimizer: 
+The AdamW optimizer (Adam with weight decay) is commonly used for training transformers 
+due to its efficiency and performance in handling large models. 
+Learning Rate Scheduling: 
+A learning rate scheduler, such as the cosine annealing schedule or warmup followed by 
+decay, is applied to help the model converge more smoothly. 
+Batch Size and Epochs: 
+Given the relatively small size of CIFAR-10, a moderate batch size (e.g., 128 or 256) and a 
+training schedule of 100-200 epochs is used, depending on model convergence and 
+performance. 
+Data Augmentation: 
+To enhance model generalization, basic data augmentation techniques such as random 
+cropping, flipping, and color jittering are applied during training. More advanced techniques 
+like Cutout or MixUp can also be used to improve robustness. 
+4. Evaluation: 
+Validation and Testing: 
+After training, the model's performance is evaluated on the validation and test sets using 
+metrics such as accuracy, precision, recall, and F1-score. Accuracy is the primary metric of 
+interest for this classification task. 
+Comparison with Baseline CNN Models: 
+To evaluate the effectiveness of ViT on CIFAR-10, its performance is compared against 
+baseline CNN architectures, such as ResNet, VGG, or EfficientNet. The goal is to determine 
+whether ViT can achieve competitive or superior results on CIFAR-10. 
+Ablation Studies: 
+To understand the impact of different components on model performance, ablation studies 
+are conducted. These may include varying patch sizes, testing different numbers of 
+transformer layers, and comparing the effect of different positional encoding schemes. 
+5. Hyperparameter Tuning: 
+Patch Size: 
+Experimentation is done with different patch sizes (e.g., 4x4, 8x8) to identify the optimal size 
+for capturing meaningful image features while preserving computational efficiency. 
+Number of Transformer Layers and Attention Heads: 
+The number of transformer layers and attention heads is varied to balance model complexity 
+and performance. Deeper transformers may be more effective for larger datasets but can 
+overfit on small datasets like CIFAR-10 without proper regularization. 
+Regularization Techniques: 
+Dropout and layer normalization are used to regularize the model and prevent overfitting, 
+especially when training with smaller datasets like CIFAR-10.
